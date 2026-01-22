@@ -1,0 +1,122 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Card, CardContent } from "@/components/ui/card";
+import { GitBranch, Layers, Cloud, Terminal, DollarSign, Activity } from 'lucide-react';
+
+const services = [
+    {
+        icon: GitBranch,
+        title: 'CI/CD Pipelines',
+        description: 'Designing robust build and deploy pipelines using GitHub Actions, GitLab CI, or Jenkins. Ship faster with confidence.',
+        tools: ['GitHub Actions', 'GitLab CI', 'Jenkins', 'ArgoCD'],
+        color: 'from-blue-500 to-cyan-500'
+    },
+    {
+        icon: Layers,
+        title: 'Infrastructure as Code',
+        description: 'Provisioning reproducible, version-controlled environments using modern IaC tools. No more snowflake servers.',
+        tools: ['Terraform', 'Ansible', 'CloudFormation', 'Pulumi'],
+        color: 'from-violet-500 to-purple-500'
+    },
+    {
+        icon: Cloud,
+        title: 'Cloud Architecture',
+        description: 'Expert AWS, Azure, and GCP management. From architecture design to migration and ongoing maintenance.',
+        tools: ['AWS', 'Azure', 'GCP', 'Multi-Cloud'],
+        color: 'from-orange-500 to-amber-500'
+    },
+    {
+        icon: Terminal,
+        title: 'Scripting & Automation',
+        description: 'Eliminating manual toil with custom Python and Bash automation. If you\'re doing it twice, it should be automated.',
+        tools: ['Python', 'Bash', 'Go', 'PowerShell'],
+        color: 'from-green-500 to-emerald-500'
+    },
+    {
+        icon: DollarSign,
+        title: 'Cloud Cost Optimization',
+        description: 'FinOps expertise to audit your infrastructure and reduce monthly cloud bills by 30-50% without sacrificing performance.',
+        tools: ['Cost Explorer', 'Spot Instances', 'Reserved Capacity', 'Right-sizing'],
+        color: 'from-pink-500 to-rose-500'
+    },
+    {
+        icon: Activity,
+        title: 'Site Reliability Engineering',
+        description: 'Implementing monitoring, logging, alerting, and incident management. Know about issues before your users do.',
+        tools: ['Prometheus', 'Grafana', 'DataDog', 'PagerDuty'],
+        color: 'from-cyan-500 to-teal-500'
+    }
+];
+
+export default function Services() {
+    return (
+        <section id="services" className="py-24 md:py-32 bg-slate-950">
+            <div className="max-w-6xl mx-auto px-6">
+                {/* Header */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-16"
+                >
+                    <span className="text-blue-400 font-mono text-sm tracking-wider">// SERVICES</span>
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6 tracking-tight">
+                        What I Can Build For You
+                    </h2>
+                    <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+                        End-to-end DevOps solutions tailored to your stack, your team, and your business goals.
+                    </p>
+                </motion.div>
+
+                {/* Services Grid */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {services.map((service, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                        >
+                            <Card className="bg-slate-900/50 border-slate-800 hover:border-blue-500/50 transition-all duration-300 h-full group hover:shadow-2xl hover:shadow-blue-500/20 relative overflow-hidden">
+                                {/* Hover gradient effect */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-cyan-500/0 group-hover:from-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-500" />
+                                
+                                <CardContent className="p-6 relative z-10">
+                                    {/* Icon */}
+                                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.color} p-0.5 mb-5 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300`}>
+                                        <div className="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center">
+                                            <service.icon className="h-5 w-5 text-white group-hover:scale-110 transition-transform duration-300" />
+                                        </div>
+                                    </div>
+
+                                    {/* Content */}
+                                    <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-blue-400 transition-colors">
+                                        {service.title}
+                                    </h3>
+                                    <p className="text-slate-400 text-sm leading-relaxed mb-5">
+                                        {service.description}
+                                    </p>
+
+                                    {/* Tools */}
+                                    <div className="flex flex-wrap gap-2">
+                                        {service.tools.map((tool, toolIndex) => (
+                                            <span
+                                                key={toolIndex}
+                                                className="text-xs font-mono text-slate-500 bg-slate-800/50 px-2 py-1 rounded"
+                                            >
+                                                {tool}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
