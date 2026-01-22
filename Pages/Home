@@ -1,0 +1,24 @@
+import React from 'react';
+import Hero from '@/components/home/Hero';
+import About from '@/components/home/About';
+import Services from '@/components/home/Services';
+import Process from '@/components/home/Process';
+import Availability from '@/components/home/Availability';
+import Contact from '@/components/home/Contact';
+import Footer from '@/components/home/Footer';
+import CursorTrail from '@/components/effects/CursorTrail';
+
+export default function Home() {
+    return (
+        <div className="min-h-screen bg-slate-950">
+            <CursorTrail />
+            <Hero />
+            <About />
+            <Services />
+            <Process />
+            <Availability />
+            <Contact />
+            <Footer />
+        </div>
+    );
+}
