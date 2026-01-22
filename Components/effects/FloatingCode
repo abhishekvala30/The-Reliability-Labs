@@ -1,0 +1,48 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+
+const codeSnippets = [
+    'kubectl apply -f deployment.yml',
+    'terraform apply',
+    'docker-compose up -d',
+    'ansible-playbook deploy.yml',
+    'git push origin main',
+    'npm run build',
+    'aws s3 sync ./build',
+    'helm install app ./chart',
+    'systemctl restart nginx',
+    'journalctl -u service.service'
+];
+
+export default function FloatingCode() {
+    return (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {codeSnippets.map((code, index) => (
+                <motion.div
+                    key={index}
+                    initial={{
+                        x: Math.random() * window.innerWidth,
+                        y: -50,
+                        opacity: 0
+                    }}
+                    animate={{
+                        y: window.innerHeight + 50,
+                        opacity: [0, 0.3, 0.3, 0]
+                    }}
+                    transition={{
+                        duration: 15 + Math.random() * 10,
+                        repeat: Infinity,
+                        delay: index * 2,
+                        ease: "linear"
+                    }}
+                    className="absolute font-mono text-xs text-blue-500/30"
+                    style={{
+                        left: `${(index * 10) % 100}%`
+                    }}
+                >
+                    $ {code}
+                </motion.div>
+            ))}
+        </div>
+    );
+}
